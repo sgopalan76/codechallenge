@@ -1,8 +1,13 @@
 package com.codechallenge.cityconnectservice.resource;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,23 +36,23 @@ public class CityConnectServiceResource {
 	public String fetchCityConnectorRoutes(@PathVariable final String sourceCity,
 			@PathVariable final String	destinationCity) throws IOException {
 
-	    String read=sourceCity.concat(Constants.lineSeparator).concat(destinationCity);
-	    String hasRoutes="no";
-	    try {	    
-		    File file = new File(Constants.filePath); 
-		    Scanner sc = new Scanner(file);  
-		    sc.useDelimiter(Constants.delimiter); 
-		    while (sc.hasNextLine()) {
-		    	if(sc.nextLine().equalsIgnoreCase(read)) {
-		    		hasRoutes = "yes";
-		    		break;	
-		    	}
-		    }
-
-	    } catch (IOException e) {
-	        //error happened
-	    }
-
+		List<String> list = new ArrayList<>();
+		String hasRoutes="no";
+		String filePath = Constants.filePath;
+		String read=sourceCity.concat(Constants.lineSeparator).concat(destinationCity);
+		try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
+			list = stream
+					.filter(line -> line.equalsIgnoreCase(read))
+					.map(String::toUpperCase)
+					.collect(Collectors.toList());
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		list.forEach(System.out::println);
+		if(list.contains(read.toUpperCase()))
+			hasRoutes="yes";
+		else 
+			hasRoutes="no";
         return hasRoutes;    
         		
     }
