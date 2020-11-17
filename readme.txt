@@ -16,3 +16,10 @@ Spring Boot Application class - com.codechallenge.cityconnectservice.CityConnect
 Util class - com.codechallenge.cityconnectservice.util.Constants.java
 text file - city.txt (to store all connecting cities having roads)
 application.properties (contains the spring boot app name and server port)
+
+Swagger documentation on this URL:
+JSON:
+http://localhost:8081/v2/api-docs
+
+UI:
+http://localhost:8081/swagger-ui.html
