@@ -12,6 +12,7 @@ import com.codechallenge.cityconnectservice.util.Constants;
 
 @RestController
 @RequestMapping("/connected")
+
 public class CityConnectServiceResource {
 	
 	/**
@@ -27,18 +28,18 @@ public class CityConnectServiceResource {
 	 * @throws IOException
 	 */
 	@GetMapping("/origin/{sourceCity}/destination/{destinationCity}")
-	public boolean fetchCityConnectorRoutes(@PathVariable final String sourceCity,
+	public String fetchCityConnectorRoutes(@PathVariable final String sourceCity,
 			@PathVariable final String	destinationCity) throws IOException {
 
 	    String read=sourceCity.concat(Constants.lineSeparator).concat(destinationCity);
-	    boolean hasRoutes=false;
+	    String hasRoutes="no";
 	    try {	    
 		    File file = new File(Constants.filePath); 
 		    Scanner sc = new Scanner(file);  
 		    sc.useDelimiter(Constants.delimiter); 
 		    while (sc.hasNextLine()) {
-		    	if(sc.nextLine().contains(read)) {
-		    		hasRoutes = true;
+		    	if(sc.nextLine().equalsIgnoreCase(read)) {
+		    		hasRoutes = "yes";
 		    		break;	
 		    	}
 		    }
