@@ -13,6 +13,9 @@ Alternatively you can use the Spring Boot from eclipse as a Spring Boot App
 The package contains following classes:
 RestController class - com.codechallenge.cityconnectservice.resource.CityConnectServiceResource.java
 Spring Boot Application class - com.codechallenge.cityconnectservice.CityConnectorApplication.java
+Bean class - com.codechallenge.cityconnectservice.model.CityConnectorBean.java
+App Configuration - com.codechallenge.cityconnectservice.util.AppConfig.java
+Tests - com.codechallenge.cityconnect.CityConnectorApplicationTests
 Util class - com.codechallenge.cityconnectservice.util.Constants.java
 text file - city.txt (to store all connecting cities having roads)
 application.properties (contains the spring boot app name and server port)
