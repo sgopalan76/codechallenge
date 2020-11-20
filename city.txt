@@ -3,4 +3,6 @@ Philadelphia, Newark
 Boston, Philadelphia
 Newark, Boston
 Trenton, Albany
-Albany, New York 
+Albany, New York
+San Diego, Los Angeles
+Los Angeles, San Diego
